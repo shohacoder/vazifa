@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Center</title>
+</head>
+<body>
+    <h2><a href="{% url 'home'%}">Main Menu</a></h2>
+
+    
+    {% for service_category in service_categories %}
+    <ul>
+        <li><a href="{% url 'by_category' service_category.pk %}">{{ servise_category.title }}</a></li>
+    </ul>
+    {% endfor %}
+
+    
+
+    {% for service in services %}
+      <li>
+        <a href="{% url 'detail' service.pk %}"> {{ service.title }} </a>
+      </li>
+      <li>Description: {{ service.description }}</li>
+      <li>Price: {{ service.price }}</li>
+      <li>Duration: {{ service.duration }}</li>
+      <li>Created: {{ service.created_at }}</li>
+      <li>Updated: {{ service.updated_at }}</li>
+      <li>Is_available: {{ service.is_available }}</li>
+      <li>Category: {{ service.category }}</li>
+      <li>Mechanic: {{ service.mechanic }}</li>
+
+      {% endfor %}
+
+    
+    {% for mechanic in mechanics %}
+    <ul>
+      <li>
+        <a href="{% url 'by_mechanic' mechanic.pk %}">{{ mechanic.full_name }}</a>
+
+        {% if mechanic.experience_year >= 3 %}
+        {% endif %}
+      </li>
+    </ul>
+    {% endfor %}
+
+</body>
+</html>
